@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".feature.league.detail.match.DetailMatchActivity">
+
+    <include
+        android:id="@+id/match_layout_parent"
+        layout="@layout/match_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_5">
+
+            <TextView
+                android:id="@+id/tv_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="@string/statistic_label"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/red_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/tv_statistic">
+
+                <TextView
+                    android:id="@+id/tv_red_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/red_card_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_red_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_red"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/red_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/yellow_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_red">
+
+                <TextView
+                    android:id="@+id/tv_yellow_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/yellow_card_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_yellow_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_yellow_card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/yellow_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/goals_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_yellow_card">
+
+                <TextView
+                    android:id="@+id/tv_goal_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/goals_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_goal_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_goals"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/goals_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shots_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_goals">
+
+                <TextView
+                    android:id="@+id/tv_shot_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/shots_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_shot_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_shots"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/shots_parent" />
+
+            <TextView
+                android:id="@+id/tv_lineup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:text="@string/lineup_label"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_shots" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/keeper_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lineup">
+
+                <TextView
+                    android:id="@+id/tv_keeper_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/keeper_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_keeper_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_keeper"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/keeper_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/defense_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_keeper">
+
+                <TextView
+                    android:id="@+id/tv_defense_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/defense_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_defense_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_defense"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/defense_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/midfield_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_defense">
+
+                <TextView
+                    android:id="@+id/tv_midfield_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/midfield_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_midfield_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_midfield"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/midfield_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/forward_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_midfield">
+
+                <TextView
+                    android:id="@+id/tv_forward_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/forward_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_forward_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/forward_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/substitutes_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_forward">
+
+                <TextView
+                    android:id="@+id/tv_substitutes_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/substitutes_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_substitutes_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_substitutes"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/substitutes_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formation_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                app:layout_constraintTop_toBottomOf="@+id/view_substitutes">
+
+                <TextView
+                    android:id="@+id/tv_formation_home"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/formation_label"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_formation_away"
+                    android:layout_width="@dimen/space_140"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_formation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2"
+                android:layout_marginTop="@dimen/space_10"
+                android:layout_marginBottom="@dimen/space_50"
+                android:background="@color/grey_line"
+                app:layout_constraintTop_toBottomOf="@+id/formation_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

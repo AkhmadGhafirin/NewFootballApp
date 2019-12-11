@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_search_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <EditText
+        android:id="@+id/et_search_match"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_10"
+        android:hint="@string/search_match_hint"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_not_found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/data_not_found_message"
+        android:textSize="@dimen/text_18"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_search_match"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@color/white"
+        android:clipToPadding="true"
+        android:padding="@dimen/space_5" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_search_match"
+        android:layout_marginTop="@dimen/space_10"
+        android:visibility="gone"
+        app:shimmer_duration="800">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/match_shimmer_layout" />
+
+            <include layout="@layout/match_shimmer_layout" />
+
+            <include layout="@layout/match_shimmer_layout" />
+
+            <include layout="@layout/match_shimmer_layout" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</RelativeLayout>

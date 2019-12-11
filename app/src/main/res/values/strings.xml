@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">NewFootballApp</string>
+    <string name="leagues_label">Leagues</string>
+    <string name="favorite_label">Favorite</string>
+    <string name="date_dummy">Sat, 23 Aug 2019</string>
+    <string name="club_dummy">Team</string>
+    <string name="vs_label">vs</string>
+    <string name="score_dummy">1</string>
+    <string name="score_center">:</string>
+    <string name="goals_label">Goals</string>
+    <string name="shots_label">Shots</string>
+    <string name="keeper_label">Goal Keeper</string>
+    <string name="defense_label">Defense</string>
+    <string name="midfield_label">Midfield</string>
+    <string name="forward_label">Forward</string>
+    <string name="substitutes_label">Substitutes</string>
+    <string name="statistic_label">Statistic</string>
+    <string name="lineup_label">Lineup</string>
+    <string name="yellow_card_label">Yellow Cards</string>
+    <string name="red_card_label">Red Cards</string>
+    <string name="formation_label">Formation</string>
+    <string name="search_match_label">Search Match</string>
+    <string name="add_favorite_message">Successfully added to favorites</string>
+    <string name="remove_favorite_message">Successfully removed from favorites</string>
+    <string name="search_match_hint">Search Match…</string>
+    <string name="search_info_message">Please enter min. 3 characters.</string>
+    <string name="data_not_found_message">Oops… Data Not Found</string>
+    <string name="data_not_available_message">Oops… Data Not Available</string>
+    <string name="your_favorite_is_empty_message">Your Favorite is Empty…</string>
+</resources>
