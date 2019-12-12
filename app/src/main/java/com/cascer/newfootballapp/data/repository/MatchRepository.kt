@@ -69,7 +69,10 @@ class MatchRepository(
             .subscribe(object : ApiObserver<SearchMatchResponse>(compositeDisposable) {
                 override fun onSuccess(data: SearchMatchResponse) {
                     if (data.matches.isNullOrEmpty()) notFoundStatus.value = true
-                    else data.matches.forEach { insertMatchToDB(it, "-") }
+                    else data.matches.forEach {
+                        if (it.strSport == "Soccer") insertMatchToDB(it, "-")
+                        else notFoundStatus.value = true
+                    }
                 }
 
                 override fun onError(e: ErrorData) {

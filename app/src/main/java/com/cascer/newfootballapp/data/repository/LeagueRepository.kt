@@ -24,7 +24,9 @@ class LeagueRepository(
             .subscribe(object : ApiObserver<LeagueResponse>(compositeDisposable) {
                 override fun onSuccess(data: LeagueResponse) {
                     data.leagues?.forEach {
-                        requestDataLeaguesFromService(it.idLeague ?: "")
+                        if (it.strSport == "Soccer") {
+                            requestDataLeaguesFromService(it.idLeague ?: "")
+                        }
                     }
                 }
 

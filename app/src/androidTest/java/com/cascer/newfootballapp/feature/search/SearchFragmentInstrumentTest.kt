@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.pressImeActionButton
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -32,10 +33,12 @@ class SearchFragmentInstrumentTest {
 
     @Test
     fun search() {
+        Thread.sleep(5000)
         onView(ViewMatchers.withId(R.id.fragment_search_parent)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.et_search_match)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.et_search_match))
             .perform(ViewActions.typeText("liverpool"))
+        pressImeActionButton()
         Thread.sleep(5000)
         onView(ViewMatchers.withId(R.id.rv_search_result)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.rv_search_result)).perform(

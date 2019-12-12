@@ -9,6 +9,8 @@ import com.cascer.newfootballapp.data.response.match.SearchMatchResponse
 import com.cascer.newfootballapp.db.entity.MatchEntity
 import com.cascer.newfootballapp.utils.PAST_MATCH
 import io.reactivex.Observable
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -38,8 +40,10 @@ class MatchRepositoryTest {
         val match: MutableList<Match> = mutableListOf()
         val data = MatchResponse(match)
         `when`(apiService.getNextEvent(idLeague)).thenReturn(Observable.just(data))
-        apiService.getNextEvent(idLeague)
+        val matchResponse = apiService.getNextEvent(idLeague)
         verify(apiService).getNextEvent(idLeague)
+        assertNotNull(matchResponse)
+        assertEquals(match, matchResponse)
     }
 
     @Test
@@ -47,8 +51,10 @@ class MatchRepositoryTest {
         val match: MutableList<Match> = mutableListOf()
         val data = MatchResponse(match)
         `when`(apiService.getPastEvent(idLeague)).thenReturn(Observable.just(data))
-        apiService.getPastEvent(idLeague)
+        val matchResponse = apiService.getPastEvent(idLeague)
         verify(apiService).getPastEvent(idLeague)
+        assertNotNull(matchResponse)
+        assertEquals(match, matchResponse)
     }
 
     @Test
@@ -56,8 +62,10 @@ class MatchRepositoryTest {
         val match: MutableList<Match> = mutableListOf()
         val data = SearchMatchResponse(match)
         `when`(apiService.searchMatch(query)).thenReturn(Observable.just(data))
-        apiService.searchMatch(query)
+        val matchResponse = apiService.searchMatch(query)
         verify(apiService).searchMatch(query)
+        assertNotNull(matchResponse)
+        assertEquals(match, matchResponse)
     }
 
     @Test

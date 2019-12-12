@@ -8,7 +8,8 @@ import com.cascer.newfootballapp.data.response.league.LeagueResponse
 import com.cascer.newfootballapp.db.entity.LeagueEntity
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Observable
-import org.junit.Assert
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -33,15 +34,16 @@ class LeagueRepositoryTest {
         val leagues: MutableList<League> = mutableListOf()
         val data = LeagueResponse(leagues)
         `when`(apiService.getLeagues()).thenReturn(Observable.just(data))
-        apiService.getLeagues()
+        val leaguesResponse = apiService.getLeagues()
         verify(apiService).getLeagues()
+        assertNotNull(leaguesResponse)
+        assertEquals(leagues, leaguesResponse)
     }
 
     @Test
     fun getLeaguesFromDB() {
         val data: LiveData<List<LeagueEntity>> = MutableLiveData()
         `when`(leagueRepository.getLeaguesFromDB()).thenReturn(data)
-        leagueRepository.getLeaguesFromDB()
         verify(leagueRepository).getLeaguesFromDB()
     }
 }
