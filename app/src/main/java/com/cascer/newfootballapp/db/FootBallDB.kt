@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.cascer.newfootballapp.db.entity.LeagueEntity
 import com.cascer.newfootballapp.db.entity.MatchEntity
+import com.cascer.newfootballapp.db.entity.TeamEntity
 
-@Database(entities = [LeagueEntity::class, MatchEntity::class], version = 1)
+@Database(entities = [LeagueEntity::class, MatchEntity::class, TeamEntity::class], version = 1)
 abstract class FootBallDB : RoomDatabase() {
 
     abstract fun dao(): FootBallDao

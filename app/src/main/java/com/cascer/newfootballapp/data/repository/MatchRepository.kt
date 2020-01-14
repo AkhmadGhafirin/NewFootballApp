@@ -131,7 +131,7 @@ class MatchRepository(
     }
 
     private suspend fun getBadgeTeam(idTeam: String): String =
-        apiService.getTeam(idTeam).teams?.get(0)?.strTeamBadge.toString()
+        apiService.getBadgeTeam(idTeam).teams?.get(0)?.strTeamBadge.toString()
 
     fun getMatchFromDB(idLeague: String, eventType: String): LiveData<List<MatchEntity>> =
         dao.getMatch(idLeague, eventType)

@@ -31,7 +31,7 @@ class DetailLeagueActivity : AppCompatActivity() {
 
     private fun setupTabLayout() {
         vp_container.adapter =
-            ViewPagerAdapter(supportFragmentManager, league.strDescription ?: "-", league.idLeague)
+            LeaguesVPAdapter(supportFragmentManager, league.strDescription ?: "-", league.idLeague)
         tl_league_detail.setupWithViewPager(vp_container)
     }
 

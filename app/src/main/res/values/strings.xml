@@ -27,4 +27,7 @@
     <string name="data_not_found_message">Oops… Data Not Found</string>
     <string name="data_not_available_message">Oops… Data Not Available</string>
     <string name="your_favorite_is_empty_message">Your Favorite is Empty…</string>
+    <string name="zero_dummy">00</string>
+    <string name="search_team_hint">Search Team…</string>
+    <string name="description_label">Description :</string>
 </resources>

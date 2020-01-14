@@ -95,7 +95,7 @@ data class Team(
     val strDescriptionIT: String? = null,
 
     @field:SerializedName("idTeam")
-    val idTeam: String? = null,
+    val idTeam: String = "-",
 
     @field:SerializedName("strDescriptionEN")
     val strDescriptionEN: String? = null,

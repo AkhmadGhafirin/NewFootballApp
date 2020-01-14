@@ -3,6 +3,7 @@ package com.cascer.newfootballapp.data.network
 import com.cascer.newfootballapp.data.response.league.LeagueResponse
 import com.cascer.newfootballapp.data.response.match.MatchResponse
 import com.cascer.newfootballapp.data.response.match.SearchMatchResponse
+import com.cascer.newfootballapp.data.response.standings.StandingsResponse
 import com.cascer.newfootballapp.data.response.team.TeamResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -17,6 +18,9 @@ interface ApiService {
     fun getDataLeague(
         @Query("id") idLeague: String
     ): Observable<LeagueResponse>
+
+    @GET("lookuptable.php")
+    fun getStandings(@Query("l") idLeague: String): Observable<StandingsResponse>
 
     @GET("eventspastleague.php")
     fun getPastEvent(
@@ -34,7 +38,17 @@ interface ApiService {
     ): Observable<SearchMatchResponse>
 
     @GET("lookupteam.php")
-    suspend fun getTeam(
+    suspend fun getBadgeTeam(
         @Query("id") idLeague: String
     ): TeamResponse
+
+    @GET("lookup_all_teams.php")
+    fun getTeams(
+        @Query("id") idLeague: String
+    ): Observable<TeamResponse>
+
+    @GET("searchteams.php")
+    fun searchTeam(
+        @Query("t") query: String
+    ): Observable<TeamResponse>
 }

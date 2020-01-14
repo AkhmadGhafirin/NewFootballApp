@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cascer.newfootballapp.db.entity.LeagueEntity
 import com.cascer.newfootballapp.db.entity.MatchEntity
+import com.cascer.newfootballapp.db.entity.TeamEntity
 
 @Dao
 interface FootBallDao {
@@ -16,6 +17,15 @@ interface FootBallDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLeague(leagueEntity: LeagueEntity)
+
+    @Query("SELECT * FROM team WHERE id_league == :idLeague ORDER BY str_team")
+    fun getTeams(idLeague: String): LiveData<List<TeamEntity>>
+
+    @Query("SELECT * FROM team WHERE str_team LIKE :query")
+    fun searchTeam(query: String): LiveData<List<TeamEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTeam(teamEntity: TeamEntity)
 
     @Query("SELECT * FROM `match` WHERE is_favorite == 1 ORDER BY date_event DESC")
     fun getFavoriteMatch(): LiveData<List<MatchEntity>>
