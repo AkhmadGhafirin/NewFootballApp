@@ -1,17 +1,17 @@
 package com.cascer.newfootballapp.data.repository
 
-import androidx.lifecycle.LiveData
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import com.cascer.newfootballapp.data.RxSchedulerRule
 import com.cascer.newfootballapp.data.network.ApiService
-import com.cascer.newfootballapp.data.response.match.Match
 import com.cascer.newfootballapp.data.response.match.MatchResponse
 import com.cascer.newfootballapp.data.response.match.SearchMatchResponse
-import com.cascer.newfootballapp.db.entity.MatchEntity
-import com.cascer.newfootballapp.utils.PAST_MATCH
+import com.cascer.newfootballapp.getTestObserver
 import io.reactivex.Observable
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -19,6 +19,12 @@ import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 class MatchRepositoryTest {
+
+    @get:Rule
+    var rxSchedulerRule = RxSchedulerRule()
+
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
     @Mock
     private lateinit var apiService: ApiService
@@ -37,58 +43,44 @@ class MatchRepositoryTest {
 
     @Test
     fun requestNextMatchFromService() {
-        val match: MutableList<Match> = mutableListOf()
-        val data = MatchResponse(match)
+        val data = MatchResponse(mutableListOf())
         `when`(apiService.getNextEvent(idLeague)).thenReturn(Observable.just(data))
         val matchResponse = apiService.getNextEvent(idLeague)
         verify(apiService).getNextEvent(idLeague)
         assertNotNull(matchResponse)
-        assertEquals(match, matchResponse)
+        apiService.getNextEvent(idLeague).test().assertValue(data).dispose()
     }
 
     @Test
     fun requestPastMatchFromService() {
-        val match: MutableList<Match> = mutableListOf()
-        val data = MatchResponse(match)
+        val data = MatchResponse(mutableListOf())
         `when`(apiService.getPastEvent(idLeague)).thenReturn(Observable.just(data))
         val matchResponse = apiService.getPastEvent(idLeague)
         verify(apiService).getPastEvent(idLeague)
         assertNotNull(matchResponse)
-        assertEquals(match, matchResponse)
+        apiService.getPastEvent(idLeague).test().assertValue(data).dispose()
     }
 
     @Test
     fun requestSearchMatchFromService() {
-        val match: MutableList<Match> = mutableListOf()
-        val data = SearchMatchResponse(match)
+        val data = SearchMatchResponse(mutableListOf())
         `when`(apiService.searchMatch(query)).thenReturn(Observable.just(data))
         val matchResponse = apiService.searchMatch(query)
         verify(apiService).searchMatch(query)
         assertNotNull(matchResponse)
-        assertEquals(match, matchResponse)
+        apiService.searchMatch(query).test().assertValue(data).dispose()
     }
 
     @Test
-    fun searchMatchFromDB() {
-        val data: LiveData<List<MatchEntity>> = MutableLiveData()
-        `when`(matchRepository.searchMatchFromDB(query)).thenReturn(data)
-        matchRepository.searchMatchFromDB(query)
-        verify(matchRepository).searchMatchFromDB(query)
-    }
-
-    @Test
-    fun getMatchFromDB() {
-        val data: LiveData<List<MatchEntity>> = MutableLiveData()
-        `when`(matchRepository.getMatchFromDB(idLeague, PAST_MATCH)).thenReturn(data)
-        matchRepository.getMatchFromDB(idLeague, PAST_MATCH)
-        verify(matchRepository).getMatchFromDB(idLeague, PAST_MATCH)
-    }
-
-    @Test
-    fun getFavoriteMatch() {
-        val data: LiveData<List<MatchEntity>> = MutableLiveData()
-        `when`(matchRepository.getFavoriteMatch()).thenReturn(data)
-        matchRepository.getFavoriteMatch()
-        verify(matchRepository).getFavoriteMatch()
+    fun updateFavoriteMatch() {
+        matchRepository.requestNextMatchFromService(idLeague)
+        val observerState = MutableLiveData<Boolean>().apply { postValue(true) }
+        matchRepository.updateFavoriteMatch(true, "602346")
+        verify(matchRepository).updateFavoriteMatch(true, "602346")
+        `when`(matchRepository.getFavoriteState("602346")).thenReturn(observerState)
+        val result = matchRepository.getFavoriteState("602346")
+        verify(matchRepository).getFavoriteState("602346")
+        assertNotNull(result)
+        assertEquals(true, result.getTestObserver().observedValues[0])
     }
 }

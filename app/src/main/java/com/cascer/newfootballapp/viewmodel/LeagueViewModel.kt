@@ -7,7 +7,7 @@ import com.cascer.newfootballapp.db.entity.LeagueEntity
 
 class LeagueViewModel(private val repository: LeagueRepository) : ViewModel() {
 
-    fun saveLeaguesToDB() {
+    fun requestLeagues() {
         repository.requestLeaguesFromService()
     }
 

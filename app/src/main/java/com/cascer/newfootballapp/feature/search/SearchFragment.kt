@@ -18,6 +18,7 @@ import com.cascer.newfootballapp.db.entity.MatchEntity
 import com.cascer.newfootballapp.feature.MainActivity
 import com.cascer.newfootballapp.feature.league.detail.match.DetailMatchActivity
 import com.cascer.newfootballapp.feature.league.detail.match.MatchAdapter
+import com.cascer.newfootballapp.utils.EspressoIdlingResource
 import com.cascer.newfootballapp.utils.ShimmerHelper
 import com.cascer.newfootballapp.viewmodel.MatchViewModel
 import com.google.gson.Gson
@@ -53,6 +54,7 @@ class SearchFragment : Fragment() {
     private fun setupRV() {
         rv_search_result.layoutManager = LinearLayoutManager(context)
         rv_search_result.adapter = adapter
+        EspressoIdlingResource.decrement()
     }
 
     private fun toDetail(data: MatchEntity) {

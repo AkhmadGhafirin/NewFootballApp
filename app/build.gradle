@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 kapt {
@@ -83,19 +86,11 @@ dependencies {
     //koin
     implementation 'org.koin:koin-android-viewmodel:1.0.2'
     testImplementation 'org.koin:koin-test:1.0.2'
-//    androidTestImplementation "org.koin:koin-test:2.0.1"
 
     //Room
     implementation "androidx.room:room-runtime:2.2.2"
     kapt "androidx.room:room-compiler:2.2.2"
     implementation "androidx.room:room-rxjava2:2.2.2"
-
-    //Mockito
-    testImplementation 'org.mockito:mockito-core:3.1.0'
-    testImplementation "org.mockito:mockito-inline:3.1.0"
-    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
-
-//    testImplementation 'junit:junit:4.12'
 
     //testing
     androidTestImplementation 'androidx.test:core:1.2.0'
@@ -113,4 +108,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation "org.mockito:mockito-inline:3.1.0"
+    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'junit:junit:4.12'
 }

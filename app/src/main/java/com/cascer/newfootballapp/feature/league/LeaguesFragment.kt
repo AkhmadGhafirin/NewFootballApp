@@ -48,7 +48,7 @@ class LeaguesFragment : Fragment() {
     }
 
     private fun requestAndInsert() {
-        viewModel.saveLeaguesToDB()
+        viewModel.requestLeagues()
         viewModel.getLeagues()
             .observe(this, Observer {
                 it?.let {

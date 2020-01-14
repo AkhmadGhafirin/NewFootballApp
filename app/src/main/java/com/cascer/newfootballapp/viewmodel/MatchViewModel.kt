@@ -32,8 +32,8 @@ class MatchViewModel(private val repository: MatchRepository) : ViewModel() {
         repository.requestSearchMatchFromService(query)
 
 
-    fun getMatch(idLeague: String, eventType: String): LiveData<List<MatchEntity>> =
-        repository.getMatchFromDB(idLeague, eventType)
+    fun getMatch(leagueID: String, eventType: String): LiveData<List<MatchEntity>> =
+        repository.getMatchFromDB(leagueID, eventType)
 
     fun getFavoriteMatch(): LiveData<List<MatchEntity>> = repository.getFavoriteMatch()
 

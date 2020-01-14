@@ -3,6 +3,7 @@ package com.cascer.newfootballapp.feature.search
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.pressImeActionButton
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -13,6 +14,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.cascer.newfootballapp.R
 import com.cascer.newfootballapp.feature.MainActivity
+import com.cascer.newfootballapp.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,11 +32,16 @@ class SearchFragmentInstrumentTest {
     fun setUp() {
         activityRule.activity.supportFragmentManager.beginTransaction()
             .replace(R.id.container, SearchFragment()).commit()
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
     }
 
     @Test
     fun search() {
-        Thread.sleep(5000)
         onView(ViewMatchers.withId(R.id.fragment_search_parent)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.et_search_match)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.et_search_match))
