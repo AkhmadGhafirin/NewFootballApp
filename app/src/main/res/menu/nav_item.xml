@@ -13,7 +13,7 @@
         android:id="@+id/search"
         android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title="@string/search_match_label"
+        android:title="@string/search_label"
         app:showAsAction="ifRoom" />
 
     <item

@@ -19,7 +19,7 @@
     <string name="yellow_card_label">Yellow Cards</string>
     <string name="red_card_label">Red Cards</string>
     <string name="formation_label">Formation</string>
-    <string name="search_match_label">Search Match</string>
+    <string name="search_label">Search</string>
     <string name="add_favorite_message">Successfully added to favorites</string>
     <string name="remove_favorite_message">Successfully removed from favorites</string>
     <string name="search_match_hint">Search Match…</string>
